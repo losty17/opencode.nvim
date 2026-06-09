@@ -25,6 +25,9 @@ end
 
 function M.toggle()
   if winnr and vim.api.nvim_win_is_valid(winnr) then
+    if #vim.api.nvim_list_wins() == 1 then
+      vim.api.nvim_create_buf(false, true)
+    end
     vim.api.nvim_win_close(winnr, true)
     winnr = nil
     return
